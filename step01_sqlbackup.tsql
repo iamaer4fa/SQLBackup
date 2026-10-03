@@ -30,13 +30,13 @@ SELECT @second = (SELECT CONVERT(VARCHAR(2), FORMAT(DATEPART(ss,@time),'00')))
 
 -- 4. Defining the filename format
 
-SELECT @name ='Steniel_new' + '_' + @year + @month + @day + @hour + @minute + @second
+SELECT @name ='dbname_new' + '_' + @year + @month + @day + @hour + @minute + @second
 
 SET @pathwithname = @path + @name + '.bak'
 
 --5. Executing the backup command
 
-BACKUP DATABASE [Steniel_new] 
+BACKUP DATABASE [dbname_new] 
 TO DISK = @pathwithname WITH NOFORMAT, NO_COMPRESSION, NOINIT, SKIP, REWIND, NOUNLOAD, STATS = 10
 
 --6. Save the path

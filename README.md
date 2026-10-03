@@ -22,12 +22,12 @@ The T-SQL script:
 
 - sets the backup destination folder to `D:\SQLBackup\`
 - creates a filename using the current date and time
-- backs up the database `Steniel_new`
+- backs up the database `dbname_new`
 - writes the full backup file path into `D:\SQLBackup\file.txt`
 
 Example generated filename:
 
-- `Steniel_new_20261003_153045.bak`
+- `dbname_new_20261003_153045.bak`
 
 ### 2) Compression step
 The PowerShell script:
@@ -50,7 +50,7 @@ Before using the scripts, make sure the following are available:
 - 7-Zip installed at `C:\Program Files\7-Zip\7z.exe`
 - Windows file system access to:
   - `D:\SQLBackup\`
-  - `D:\OneDrive\OneDrive - STENIEL MINDANAO PACKAGING CORPORATION\backup\erpserver`
+  - `D:\OneDrive\OneDrive_Org\backup\erpserver`
 
 ## Usage
 
@@ -59,7 +59,7 @@ Execute [step01_sqlbackup.tsql](step01_sqlbackup.tsql) in SQL Server Management 
 
 This generates a file such as:
 
-- `D:\SQLBackup\Steniel_new_20261003_153045.bak`
+- `D:\SQLBackup\dbname_new_20261003_153045.bak`
 
 and writes the path to:
 
@@ -79,7 +79,7 @@ This will:
 
 You may want to adjust the following for your environment:
 
-- database name: `Steniel_new`
+- database name: `dbname_new`
 - backup folder: `D:\SQLBackup\`
 - 7-Zip installation path
 - OneDrive destination folder
@@ -96,15 +96,16 @@ You may want to adjust the following for your environment:
 
 ```text
 SQL backup created:
-D:\SQLBackup\Steniel_new_20261003_153045.bak
+D:\SQLBackup\dbname_new_20261003_153045.bak
 
 Stored to file:
 D:\SQLBackup\file.txt
 
 Compressed archive created:
-D:\OneDrive\OneDrive - STENIEL MINDANAO PACKAGING CORPORATION\backup\erpserver\Steniel_new_20261003_153045.7z
+D:\OneDrive\OneDrive_Org\backup\erpserver\dbname_new_20261003_153045.7z
 ```
 
 ## Notes
 
 This is a practical, low-complexity backup process intended for local or small-office SQL Server environments. It is easy to modify for different databases, naming conventions, or backup storage locations.
+This can be easily expanded with more complex workflows.

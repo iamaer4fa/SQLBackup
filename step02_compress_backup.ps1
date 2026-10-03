@@ -10,5 +10,5 @@ $7ZipPath = "C:\Program Files\7-Zip\7z.exe"
 Remove-Item "$backupFile"
 
 # Move item to OneDrive
-Move-Item -Path "$backupFile.7z" -Destination "D:\OneDrive\OneDrive - STENIEL MINDANAO PACKAGING CORPORATION\backup\erpserver"
+Move-Item -Path "$backupFile.7z" -Destination "D:\OneDrive\OneDrive_Org\backup\erpserver"
 
