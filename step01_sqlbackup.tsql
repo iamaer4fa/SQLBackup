@@ -1,0 +1,49 @@
+--Script 1: Backup specific database
+
+-- 1. Variable declaration
+
+DECLARE @path VARCHAR(500)
+DECLARE @name VARCHAR(500)
+DECLARE @pathwithname VARCHAR(500)
+DECLARE @time DATETIME
+DECLARE @year VARCHAR(4)
+DECLARE @month VARCHAR(2)
+DECLARE @day VARCHAR(2)
+DECLARE @hour VARCHAR(2)
+DECLARE @minute VARCHAR(2)
+DECLARE @second VARCHAR(2)
+DECLARE @SevenZipPath NVARCHAR(255) = 'C:\Program Files\7-Zip\7z.exe';
+
+-- 2. Setting the backup path
+
+SET @path = 'D:\SQLBackup\'
+
+-- 3. Getting the time values
+
+SELECT @time   = GETDATE()
+SELECT @year   = (SELECT CONVERT(VARCHAR(4), DATEPART(yy, @time)))
+SELECT @month  = (SELECT CONVERT(VARCHAR(2), FORMAT(DATEPART(mm,@time),'00')))
+SELECT @day    = (SELECT CONVERT(VARCHAR(2), FORMAT(DATEPART(dd,@time),'00')))
+SELECT @hour   = (SELECT CONVERT(VARCHAR(2), FORMAT(DATEPART(hh,@time),'00')))
+SELECT @minute = (SELECT CONVERT(VARCHAR(2), FORMAT(DATEPART(mi,@time),'00')))
+SELECT @second = (SELECT CONVERT(VARCHAR(2), FORMAT(DATEPART(ss,@time),'00')))
+
+-- 4. Defining the filename format
+
+SELECT @name ='Steniel_new' + '_' + @year + @month + @day + @hour + @minute + @second
+
+SET @pathwithname = @path + @name + '.bak'
+
+--5. Executing the backup command
+
+BACKUP DATABASE [Steniel_new] 
+TO DISK = @pathwithname WITH NOFORMAT, NO_COMPRESSION, NOINIT, SKIP, REWIND, NOUNLOAD, STATS = 10
+
+--6. Save the path
+ 
+DECLARE @Command NVARCHAR(4000);
+SET @Command = 'echo ' + @pathwithname + ' > D:\SQLBackup\file.txt';
+EXEC xp_cmdshell @Command, NO_OUTPUT;
+
+
+Go
