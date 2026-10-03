@@ -10,6 +10,8 @@ This project contains a simple backup workflow for SQL Server databases that:
 
 This is a lightweight, practical setup suited for scheduled or manual SQL backups on a Windows server.
 
+These scripts are designed to be executed as SQL Server Agent jobs.
+
 ## Files
 
 - [step01_sqlbackup.tsql](step01_sqlbackup.tsql) — creates a SQL Server backup file with a timestamped name and records the backup path into `D:\SQLBackup\file.txt`
